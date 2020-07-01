@@ -1,0 +1,17 @@
+{
+    "doctor": {
+        "text": "Doctor"
+    },
+    "investigator-1": {
+        "text": "Investigator 1"
+    },
+    "investigator-2": {
+        "text": "Investigator 2"
+    },
+    "civilian": {
+        "text": "Civilian"
+    },
+    "mafia": {
+        "text": "Mafia"
+    }
+}

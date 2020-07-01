@@ -1,0 +1,53 @@
+html {
+    height: 100%;
+    width: 100%;
+}
+body {
+    margin: 0;
+    background: url("/background.jpg");
+    background-size: cover;
+    background-position: center;
+    height: 100%;
+    width: 100%;
+    display: table;
+}
+
+#root {
+    width: 100%;
+    display: table-cell;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.form > div {
+    width: 300px;
+}
+
+.form > div > div {
+    background: #efefef;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+.button-container {
+    width: 300px;
+    margin: auto;
+}
+
+.button-container > button {
+    width: 100%;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+}
+
+.character-portrait {
+    width: 250px;
+    border: 1px solid white;
+    box-shadow: 0px 10px 20px 0px;
+}
+
+h1 {
+    font-family: Arial, Helvetica, sans-serif;
+    color: white;
+    text-shadow: 0 1px 4px black;
+}
