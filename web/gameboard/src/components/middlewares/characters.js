@@ -11,3 +11,10 @@ export const GetCharacter = (name) => {
         name: name
     }));
 }
+
+export const GetCharacterDetail = (sessionId) => {
+    let _qs = qs.stringify({
+        sessionId: sessionId
+    });
+    return Axios.get(`http://${GetHost()}/get-character?${_qs}`);
+}

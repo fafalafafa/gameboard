@@ -2,21 +2,21 @@ import React from 'react';
 import {
     HashRouter as Router,
     Switch,
-    Route,
-    Link
+    Route
 } from "react-router-dom";
 import Index from "./components/pages/index"
+import Admin from "./components/pages/admin/index"
 
 function App() {
     return (
         <div className="App">
             <Router>
                 <Switch>
-                    <Route path="/something">
-                        <h2>hello</h2>
+                    <Route path="/admin">
+                        <Admin />
                     </Route>                
                     <Route exact path="/">
-                        <Index component={Route} />
+                        <Index />
                     </Route>
                     <Route path="/">
                         <h2>Sad</h2>

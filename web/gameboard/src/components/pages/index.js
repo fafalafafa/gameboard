@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Button, Container, TextField } from "@material-ui/core";
-import { GetCharacters, GetCharacter }from "../middlewares/characters"
+import { GetCharacters, GetCharacter, GetCharacterDetail }from "../middlewares/characters"
 import config from "../../config/role-maps.json";
 import "./index.css";
 class Index extends Component {
@@ -8,7 +8,8 @@ class Index extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            name: ""
+            name: "",
+            isLoaded: false
         }
  
     }
@@ -16,6 +17,21 @@ class Index extends Component {
     modifyText = (v) => {
         this.setState({
             name: v.target.value
+        })
+    }
+
+    componentWillMount() {
+        this.GetCharacterDetail()
+    }
+
+    GetCharacterDetail = () => {
+        let sessionId = window.localStorage.getItem("sessionId");
+        GetCharacterDetail(sessionId).then(({ data }) => {
+            console.log(data)
+            this.setState({
+                isLoaded: true,
+                role: data.message
+            })
         })
     }
 
@@ -27,7 +43,11 @@ class Index extends Component {
 
     getCharacter = () => {
         GetCharacter(this.state.name).then(({data}) => {
-            window.localStorage.setItem("character", data)
+            window.localStorage.setItem("sessionId", data.sessId)
+            this.setState({
+                isLoaded: true,
+                role: data.character
+            })
         })
     }
 
@@ -47,18 +67,20 @@ class Index extends Component {
             </form>            
         )
     }
+
     displayCharacter = () => {
-        let character = window.localStorage.getItem("character");
-        if (character) {
-            // display character picture here.
-            return (
-                <div>
-                    <img className="character-portrait" src={`/characters/${character}.jpg`} />
-                    <h1>{config[character].text}</h1>
-                </div>
-            )
+        if (this.state.isLoaded) {
+            if (this.state.role) {
+                // display character picture here.
+                return (
+                    <div>
+                        <img className="character-portrait" src={`/characters/${this.state.role}.jpg`} />
+                        <h1>{config[this.state.role].text}</h1>
+                    </div>
+                )
+            }
+            return this.displayForm()
         }
-        return this.displayForm()
         // display form
     }
 
